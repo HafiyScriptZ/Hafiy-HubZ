@@ -1,0 +1,276 @@
+local b='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'
+function MXThoPleGfUFImlBucynuOWwlUVxCNrZZENhD(data) m=string.sub(data, 0, 1) data=data:gsub(m,'')
+
+data = string.gsub(data, '[^'..b..'=]', '') return (data:gsub('.', function(x) if (x == '=') then return '' end local r,f='',(b:find(x)-1) for i=6,1,-1 do r=r..(f%2^i-f%2^(i-1)>0 and '1' or '0') end return r; end):gsub('%d%d%d?%d?%d?%d?%d?%d?', function(x) if (#x ~= 8) then return '' end local c=0 for i=1,8 do c=c+(x:sub(i,i)=='1' and 2^(8-i) or 0) end return string.char(c) end)) end
+
+
+ 
+
+
+local Rayfield = loadstring(game:HttpGet(MXThoPleGfUFImlBucynuOWwlUVxCNrZZENhD('RaHR0cHM6Ly9zaXJpdXMubWVudS9yYXlmaWVsZA==')))()
+
+local Players = game:GetService(MXThoPleGfUFImlBucynuOWwlUVxCNrZZENhD('NUGxheWVycw=='))
+local UIS = game:GetService(MXThoPleGfUFImlBucynuOWwlUVxCNrZZENhD('fVXNlcklucHV0U2VydmljZQ=='))
+local RunService = game:GetService(MXThoPleGfUFImlBucynuOWwlUVxCNrZZENhD('iUnVuU2VydmljZQ=='))
+local lp = Players.LocalPlayer
+
+-- ============================================
+-- REMOTE SCRIPTS LOADER
+local REMOTE_SCRIPTS_URL = MXThoPleGfUFImlBucynuOWwlUVxCNrZZENhD('taHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL0hhZml5U2NyaXB0Wi9IYWZpeS1IdWJaL21haW4vcmVtb3RlX3NjcmlwdHMubHVh')
+-- ============================================
+
+local localScripts = {
+    {
+        Game = MXThoPleGfUFImlBucynuOWwlUVxCNrZZENhD('nVW5pdmVyc2FsIFYy'),
+        Code = [[loadstring(game:HttpGet(MXThoPleGfUFImlBucynuOWwlUVxCNrZZENhD('EaHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL0hhZml5U2NyaXB0Wi9IYWZpeVNjcmlwWi9yZWZzL2hlYWRzL21haW4vUkVNT1RFJTIwVU5JVkVSU0FMJTIwVjI=')))()]]
+    },
+    {
+        Game = MXThoPleGfUFImlBucynuOWwlUVxCNrZZENhD('FVG93ZXIgT2YgTWlzZXJ5'),
+        Code = [[loadstring(game:HttpGet(MXThoPleGfUFImlBucynuOWwlUVxCNrZZENhD('VaHR0cHM6Ly9wYXN0ZWJpbi5jb20vcmF3L1Z6UnRqQmg4')))()]]
+    }
+}
+
+local remoteScripts = {}
+local remoteSuccess = false
+
+pcall(function()
+    remoteScripts = loadstring(game:HttpGet(REMOTE_SCRIPTS_URL))()
+    if type(remoteScripts) == MXThoPleGfUFImlBucynuOWwlUVxCNrZZENhD('odGFibGU=') then
+        remoteSuccess = true
+    end
+end)
+
+if not remoteSuccess then
+    remoteScripts = {}
+end
+
+local Scripts = {}
+for _, entry in ipairs(localScripts) do
+    table.insert(Scripts, entry)
+end
+for _, entry in ipairs(remoteScripts) do
+    table.insert(Scripts, entry)
+end
+
+local speedValue = 16
+local noclipConn, infJumpConn, antiAfkConn, godModeConn
+local espHighlights, espConnections = {}, {}
+local activeConnections = {}
+
+local function track(conn)
+    table.insert(activeConnections, conn)
+    return conn
+end
+
+local function setSpeed(val)
+    speedValue = tonumber(val) or 16
+    local char = lp.Character
+    if char then
+        local hum = char:FindFirstChildOfClass(MXThoPleGfUFImlBucynuOWwlUVxCNrZZENhD('kSHVtYW5vaWQ='))
+        if hum then hum.WalkSpeed = speedValue end
+    end
+end
+
+local function restoreCollision(char)
+    if not char then return end
+    for _, p in ipairs(char:GetDescendants()) do
+        if p:IsA(MXThoPleGfUFImlBucynuOWwlUVxCNrZZENhD('VQmFzZVBhcnQ=')) then p.CanCollide = true end
+    end
+end
+
+local function setNoclip(enabled)
+    if noclipConn then noclipConn:Disconnect() noclipConn = nil end
+    if enabled then
+        noclipConn = RunService.Stepped:Connect(function()
+            local char = lp.Character
+            if char then
+                for _, p in ipairs(char:GetDescendants()) do
+                    if p:IsA(MXThoPleGfUFImlBucynuOWwlUVxCNrZZENhD('zQmFzZVBhcnQ=')) then p.CanCollide = false end
+                end
+            end
+        end)
+    else
+        restoreCollision(lp.Character)
+    end
+end
+
+local function setSuperJump(enabled)
+    local char = lp.Character
+    if char then
+        local hum = char:FindFirstChildOfClass(MXThoPleGfUFImlBucynuOWwlUVxCNrZZENhD('mSHVtYW5vaWQ='))
+        if hum then hum.JumpPower = enabled and 120 or 50 end
+    end
+end
+
+local function setInfJump(enabled)
+    if infJumpConn then infJumpConn:Disconnect() infJumpConn = nil end
+    if enabled then
+        infJumpConn = UIS.JumpRequest:Connect(function()
+            local char = lp.Character
+            if char then
+                local hum = char:FindFirstChildOfClass(MXThoPleGfUFImlBucynuOWwlUVxCNrZZENhD('wSHVtYW5vaWQ='))
+                if hum then hum:ChangeState(Enum.HumanoidStateType.Jumping) end
+            end
+        end)
+    end
+end
+
+local function setAntiAfk(enabled)
+    if antiAfkConn then antiAfkConn:Disconnect() antiAfkConn = nil end
+    if enabled then
+        local VU = game:GetService(MXThoPleGfUFImlBucynuOWwlUVxCNrZZENhD('eVmlydHVhbFVzZXI='))
+        antiAfkConn = lp.Idled:Connect(function()
+            VU:CaptureController()
+            VU:ClickButton2(Vector2.new())
+        end)
+    end
+end
+
+local function setGodMode(enabled)
+    if godModeConn then godModeConn:Disconnect() godModeConn = nil end
+    if enabled then
+        local function applyGod(char)
+            if not char then return end
+            local hum = char:FindFirstChildOfClass(MXThoPleGfUFImlBucynuOWwlUVxCNrZZENhD('ZSHVtYW5vaWQ='))
+            if hum then
+                hum.MaxHealth = math.huge
+                hum.Health = math.huge
+            end
+        end
+        applyGod(lp.Character)
+        godModeConn = lp.CharacterAdded:Connect(applyGod)
+    end
+end
+
+local function clearESP()
+    for _, hl in pairs(espHighlights) do pcall(function() hl:Destroy() end) end
+    espHighlights = {}
+    for plr, c in pairs(espConnections) do
+        if type(plr) == MXThoPleGfUFImlBucynuOWwlUVxCNrZZENhD('bdXNlcmRhdGE=') and plr:IsA(MXThoPleGfUFImlBucynuOWwlUVxCNrZZENhD('gUGxheWVy')) then
+            pcall(function() c:Disconnect() end)
+        end
+    end
+    espConnections = {}
+end
+
+local function addESP(plr)
+    if plr == lp or not plr.Character or espHighlights[plr] then return end
+    local char = plr.Character
+    local hl = Instance.new(MXThoPleGfUFImlBucynuOWwlUVxCNrZZENhD('PSGlnaGxpZ2h0'))
+    hl.Name = MXThoPleGfUFImlBucynuOWwlUVxCNrZZENhD('GSGFmaXlYX0VTUA==')
+    hl.FillColor = Color3.fromRGB(255, 60, 80)
+    hl.OutlineColor = Color3.new(1, 1, 1)
+    hl.FillTransparency = 0.5
+    hl.OutlineTransparency = 0
+    hl.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
+    hl.Parent = char
+    espHighlights[plr] = hl
+end
+
+local function removeESP(plr)
+    if espHighlights[plr] then
+        pcall(function() espHighlights[plr]:Destroy() end)
+        espHighlights[plr] = nil
+    end
+    if espConnections[plr] then
+        pcall(function() espConnections[plr]:Disconnect() end)
+        espConnections[plr] = nil
+    end
+end
+
+local function setESP(enabled)
+    if not enabled then clearESP() return end
+    for _, plr in ipairs(Players:GetPlayers()) do
+        if plr ~= lp then
+            addESP(plr)
+            if not espConnections[plr] then
+                espConnections[plr] = plr.CharacterAdded:Connect(function()
+                    task.wait(0.3)
+                    if espEnabled then addESP(plr) end
+                end)
+            end
+        end
+    end
+    if not espConnections.PlayerAdded then
+        espConnections.PlayerAdded = Players.PlayerAdded:Connect(function(plr)
+            if plr == lp then return end
+            espConnections[plr] = plr.CharacterAdded:Connect(function()
+                task.wait(0.3)
+                if espEnabled then addESP(plr) end
+            end)
+        end)
+    end
+    if not espConnections.PlayerRemoving then
+        espConnections.PlayerRemoving = Players.PlayerRemoving:Connect(function(plr)
+            removeESP(plr)
+        end)
+    end
+end
+
+track(lp.CharacterAdded:Connect(function(char)
+    task.wait(0.5)
+    setSpeed(speedValue)
+    if superJumpEnabled then
+        local hum = char:FindFirstChildOfClass(MXThoPleGfUFImlBucynuOWwlUVxCNrZZENhD('ESHVtYW5vaWQ='))
+        if hum then hum.JumpPower = 120 end
+    end
+    if noclipEnabled then
+        task.delay(0.1, function()
+            for _, p in ipairs(char:GetDescendants()) do
+                if p:IsA(MXThoPleGfUFImlBucynuOWwlUVxCNrZZENhD('nQmFzZVBhcnQ=')) then p.CanCollide = false end
+            end
+        end)
+    end
+end))
+
+local Window = Rayfield:CreateWindow({
+    Name = MXThoPleGfUFImlBucynuOWwlUVxCNrZZENhD('TSGFmaXlYIEh1Yg=='),
+    LoadingTitle = MXThoPleGfUFImlBucynuOWwlUVxCNrZZENhD('ASGFmaXlYIEh1Yg=='),
+    LoadingSubtitle = MXThoPleGfUFImlBucynuOWwlUVxCNrZZENhD('JYnkgSGFmaXlTY3JpcHRa'),
+    ConfigurationSaving = { Enabled = false, FolderName = nil, FileName = MXThoPleGfUFImlBucynuOWwlUVxCNrZZENhD('CSGFmaXlY') },
+    Discord = { Enabled = false, Invite = MXThoPleGfUFImlBucynuOWwlUVxCNrZZENhD('X'), RememberJoins = false },
+    KeySystem = false,
+})
+
+local HomeTab = Window:CreateTab(MXThoPleGfUFImlBucynuOWwlUVxCNrZZENhD('PSG9tZQ=='), 4370345144)
+HomeTab:CreateParagraph({Title = MXThoPleGfUFImlBucynuOWwlUVxCNrZZENhD('LV2VsY29tZSwg') .. lp.DisplayName, Content = MXThoPleGfUFImlBucynuOWwlUVxCNrZZENhD('jVXNlcjogQA==') .. lp.Name .. MXThoPleGfUFImlBucynuOWwlUVxCNrZZENhD('OXG5QbGFjZSBJRDog') .. game.PlaceId .. MXThoPleGfUFImlBucynuOWwlUVxCNrZZENhD('fXG5QbGF5ZXJzOiA=') .. #Players:GetPlayers()})
+HomeTab:CreateSection(MXThoPleGfUFImlBucynuOWwlUVxCNrZZENhD('vSW5mb3JtYXRpb24='))
+HomeTab:CreateLabel(MXThoPleGfUFImlBucynuOWwlUVxCNrZZENhD('kSGFmaXlYIEh1YiBWMi41IC0gUFVCTElD'))
+HomeTab:CreateLabel(MXThoPleGfUFImlBucynuOWwlUVxCNrZZENhD('BTWFkZSBieSBIYWZpeVNjcmlwdFo='))
+
+local ScriptsTab = Window:CreateTab(MXThoPleGfUFImlBucynuOWwlUVxCNrZZENhD('SU2NyaXB0cw=='), 4370343717)
+ScriptsTab:CreateSection(MXThoPleGfUFImlBucynuOWwlUVxCNrZZENhD('CR2FtZSBTY3JpcHRz'))
+
+for _, entry in ipairs(Scripts) do
+    ScriptsTab:CreateButton({
+        Name = entry.Game,
+        Callback = function()
+            local success, err = pcall(function() loadstring(entry.Code)() end)
+            if success then
+                Rayfield:Notify({Title = MXThoPleGfUFImlBucynuOWwlUVxCNrZZENhD('WSGFmaXlYIEh1Yg=='), Content = entry.Game .. MXThoPleGfUFImlBucynuOWwlUVxCNrZZENhD('pIGxvYWRlZCE='), Duration = 3})
+            else
+                Rayfield:Notify({Title = MXThoPleGfUFImlBucynuOWwlUVxCNrZZENhD('xRXJyb3I='), Content = tostring(err), Duration = 5})
+            end
+        end,
+    })
+end
+
+local PlayerTab = Window:CreateTab(MXThoPleGfUFImlBucynuOWwlUVxCNrZZENhD('WUGxheWVy'), 4370341692)
+PlayerTab:CreateSection(MXThoPleGfUFImlBucynuOWwlUVxCNrZZENhD('iTW92ZW1lbnQ='))
+PlayerTab:CreateSlider({Name = MXThoPleGfUFImlBucynuOWwlUVxCNrZZENhD('MV2FsayBTcGVlZA=='), Range = {16, 500}, Increment = 1, Suffix = MXThoPleGfUFImlBucynuOWwlUVxCNrZZENhD('KU3R1ZHMvcw=='), CurrentValue = 16, Flag = MXThoPleGfUFImlBucynuOWwlUVxCNrZZENhD('jSGFmaXlYX1NwZWVk'), Callback = function(Value) setSpeed(Value) end})
+PlayerTab:CreateSection(MXThoPleGfUFImlBucynuOWwlUVxCNrZZENhD('aVG9nZ2xlcw=='))
+PlayerTab:CreateToggle({Name = MXThoPleGfUFImlBucynuOWwlUVxCNrZZENhD('OTm9jbGlw'), CurrentValue = false, Flag = MXThoPleGfUFImlBucynuOWwlUVxCNrZZENhD('KSGFmaXlYX05vY2xpcA=='), Callback = function(Value) setNoclip(Value) end})
+PlayerTab:CreateToggle({Name = MXThoPleGfUFImlBucynuOWwlUVxCNrZZENhD('DU3VwZXIgSnVtcA=='), CurrentValue = false, Flag = MXThoPleGfUFImlBucynuOWwlUVxCNrZZENhD('tSGFmaXlYX1N1cGVySnVtcA=='), Callback = function(Value) setSuperJump(Value) end})
+PlayerTab:CreateToggle({Name = MXThoPleGfUFImlBucynuOWwlUVxCNrZZENhD('ESW5maW5pdGUgSnVtcA=='), CurrentValue = false, Flag = MXThoPleGfUFImlBucynuOWwlUVxCNrZZENhD('pSGFmaXlYX0luZkp1bXA='), Callback = function(Value) setInfJump(Value) end})
+PlayerTab:CreateToggle({Name = MXThoPleGfUFImlBucynuOWwlUVxCNrZZENhD('eQW50aS1BRks='), CurrentValue = false, Flag = MXThoPleGfUFImlBucynuOWwlUVxCNrZZENhD('cSGFmaXlYX0FudGlBZms='), Callback = function(Value) setAntiAfk(Value) end})
+PlayerTab:CreateToggle({Name = MXThoPleGfUFImlBucynuOWwlUVxCNrZZENhD('zR29kIE1vZGU='), CurrentValue = false, Flag = MXThoPleGfUFImlBucynuOWwlUVxCNrZZENhD('nSGFmaXlYX0dvZE1vZGU='), Callback = function(Value) setGodMode(Value) end})
+PlayerTab:CreateToggle({Name = MXThoPleGfUFImlBucynuOWwlUVxCNrZZENhD('rRVNQ'), CurrentValue = false, Flag = MXThoPleGfUFImlBucynuOWwlUVxCNrZZENhD('ISGFmaXlYX0VTUA=='), Callback = function(Value) setESP(Value) end})
+
+local SettingsTab = Window:CreateTab(MXThoPleGfUFImlBucynuOWwlUVxCNrZZENhD('FU2V0dGluZ3M='), 4370131686)
+SettingsTab:CreateParagraph({Title = MXThoPleGfUFImlBucynuOWwlUVxCNrZZENhD('mSGFmaXlYIEh1YiBWMi41'), Content = MXThoPleGfUFImlBucynuOWwlUVxCNrZZENhD('HTWFkZSBieSBIYWZpeVNjcmlwdFpcblxuRmVhdHVyZXM6XG7igKIgU2NyaXB0IGV4ZWN1dGlvblxu4oCiIFBsYXllciBtb2RpZmljYXRpb25zXG7igKIgRVNQIHN5c3RlbVxu4oCiIEFudGktQUZLIHByb3RlY3Rpb25cblxuVGhhbmtzIGZvciB1c2luZyBIYWZpeVggSHViIQ==')})
+SettingsTab:CreateSection(MXThoPleGfUFImlBucynuOWwlUVxCNrZZENhD('yQ3JlZGl0cw=='))
+SettingsTab:CreateLabel(MXThoPleGfUFImlBucynuOWwlUVxCNrZZENhD('ZRGV2ZWxvcGVyOiBIYWZpeVNjcmlwdFo='))
+SettingsTab:CreateLabel(MXThoPleGfUFImlBucynuOWwlUVxCNrZZENhD('rVUkgTGlicmFyeTogUmF5ZmllbGQ='))
+
+Rayfield:Notify({Title = MXThoPleGfUFImlBucynuOWwlUVxCNrZZENhD('SSGFmaXlYIEh1Yg=='), Content = remoteSuccess and MXThoPleGfUFImlBucynuOWwlUVxCNrZZENhD('UUmVtb3RlIHNjcmlwdHMgbG9hZGVkISAo') .. #remoteScripts .. MXThoPleGfUFImlBucynuOWwlUVxCNrZZENhD('PIG5ldyk=') or MXThoPleGfUFImlBucynuOWwlUVxCNrZZENhD('FTG9hZGVkIHdpdGggbG9jYWwgc2NyaXB0cyBvbmx5'), Duration = 4})
+    
