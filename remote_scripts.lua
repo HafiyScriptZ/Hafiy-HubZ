@@ -1,7 +1,7 @@
 return {
     {
         Game = "Auto Farm & Rebirth",
-        Code = [[loadstring(game:HttpGet("https://pastefy.app/jxKSvIV5/raw"))()]]
+        Code = [[loadstring(game:HttpGet("https://pastefy.app/2CzxhRAo/raw"))()]]
     },
     {
         Game = "Hafiy Fake Purchase",
