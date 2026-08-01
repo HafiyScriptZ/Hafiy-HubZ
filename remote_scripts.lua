@@ -9,11 +9,14 @@ return {
     },
     {
         Game = "God Mode (Universal)",
-        Code = [[loadstring(game:HttpGet("https://pastefy.app/aM5C2e8y/raw"))()]]
+        Code = [[loadstring(game:HttpGet("https://pastefy.app/alI5C2e8y/raw"))()]]
     },
     {
         Game = "Cheese Escape dark",
         Code = [[loadstring(game:HttpGet("https://pastebin.com/raw/PmqH2DRd"))()]]
-
+    },
+    {
+        Game = "ConCave World Free jungle",
+        Code = [[loadstring(game:HttpGet("https://pastefy.app/oGh8qR2C/raw"))()]]
     },
 }
