@@ -4,11 +4,11 @@ return {
         Code = [[loadstring(game:HttpGet("https://pastefy.app/2CzxhRAo/raw"))()]]
     },
     {
-        Game = "UGC Paid Item ID",
-        Code = [[loadstring(game:HttpGet("https://pastefy.app/0R9lYabE/raw"))()]]
+        Game = "Axolot Id purchaser but its hafiy",
+        Code = [[loadstring(game:HttpGet("https://pastefy.app/EGr3vv6B/raw"))()]]
     },
     {
         Game = "God Mode (Universal)",
-        Code = [[loadstring(game:HttpGet("https://pastebin.com/raw/DiJHNHmg"))()]]
+        Code = [[loadstring(game:HttpGet("https://pastefy.app/aM5C2e8y/raw"))()]]
     },
 }
