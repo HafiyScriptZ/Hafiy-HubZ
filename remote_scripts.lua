@@ -13,6 +13,6 @@ return {
     },
     {
         Game = "Cheese Escape dark",
-        Code = [[loadstring(game:HttpGet("https://pastefy.app/UkfxvJ2J/raw"))()]]
+        Code = [[loadstring(game:HttpGet("https://pastefy.app/9gYRjyi4/raw"))()]]
     },
 }
