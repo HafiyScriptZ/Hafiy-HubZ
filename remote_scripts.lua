@@ -5,6 +5,6 @@ return {
     },
     {
         Game = "Hafiy Fake Purchase",
-        Code = [[loadstring(game:HttpGet("https://pastebin.com/raw/FNHtRsEw"))()]]
+        Code = [[loadstring(game:HttpGet("https://pastefy.app/OR9lYabE/raw"))()]]
     },
 }
