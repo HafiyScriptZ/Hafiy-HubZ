@@ -8,7 +8,7 @@ return {
         Code = [[loadstring(game:HttpGet("https://pastefy.app/YiZHtsLL/raw"))()]]
     },
     {
-        Game = "God Mode (Universal)",
+        Game = "God Mode (Patched)",
         Code = [[loadstring(game:HttpGet("https://pastefy.app/DR7l86dQ/raw"))()]]
     },
     {
