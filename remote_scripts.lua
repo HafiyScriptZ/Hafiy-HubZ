@@ -5,7 +5,7 @@ return {
     },
     {
         Game = "Hafiy Axolot Purchase",
-        Code = [[loadstring(game:HttpGet("https://pastebin.com/raw/pw467zA7"))()]]
+        Code = [[loadstring(game:HttpGet("https://pastebin.com/raw/VzUGD49S"))()]]
     },
     {
         Game = "God Mode (Universal)",
