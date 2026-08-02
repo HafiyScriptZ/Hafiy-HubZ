@@ -16,7 +16,15 @@ return {
         Code = [[loadstring(game:HttpGet("https://pastebin.com/raw/PmqH2DRd"))()]]
     },
     {
-        Game = "ConCave World Free jungle",
+        Game = "Concave World Free Jungle",
         Code = [[loadstring(game:HttpGet("https://pastefy.app/oGh8qR2C/raw"))()]]
+    },
+    {
+        Game = "Coraline Obby",
+        Code = [[loadstring(game:HttpGet("https://pastebin.com/raw/Gi477XVZ"))()]]
+    },
+    {
+        Game = "Gogo Climb",
+        Code = [[loadstring(game:HttpGet("https://pastefy.app/qMc4RGG5/raw"))()]]
     },
 }
