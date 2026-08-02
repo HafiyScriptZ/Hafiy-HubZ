@@ -9,7 +9,7 @@ return {
     },
     {
         Game = "God Mode (Universal)",
-        Code = [[loadstring(game:HttpGet("https://pastefy.app/alI5C2e8y/raw"))()]]
+        Code = [[loadstring(game:HttpGet("https://pastefy.app/DR7l86dQ/raw"))()]]
     },
     {
         Game = "Cheese Escape dark",
@@ -21,7 +21,7 @@ return {
     },
     {
         Game = "Coraline Obby",
-        Code = [[loadstring(game:HttpGet("https://pastebin.com/raw/Gi477XVZ"))()]]
+        Code = [[loadstring(game:HttpGet("https://pastefy.app/lqhXXDdX/raw"))()]]
     },
     {
         Game = "Gogo Climb",
