@@ -20,7 +20,7 @@ return {
         Code = [[loadstring(game:HttpGet("https://pastefy.app/oGh8qR2C/raw"))()]]
     },
     {
-        Game = "Coraline Obby",
+        Game = "Coraline Obby 1:35 up",
         Code = [[loadstring(game:HttpGet("https://pastefy.app/Cr5lgBVi/raw"))()]]
     },
     {
