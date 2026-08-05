@@ -25,6 +25,6 @@ return {
     },
     {
         Game = "Gogo Climb",
-        Code = [[loadstring(game:HttpGet("https://pastefy.app/si5zIob2/raw"))()]]
+        Code = [[loadstring(game:HttpGet("https://pastefy.app/osvUBjuN/raw"))()]]
     },
 }
